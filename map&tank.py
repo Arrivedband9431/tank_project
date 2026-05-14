@@ -85,8 +85,9 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Tank Game By Yali")
     tmx_data = load_pygame(TMX_FILE)
+
     # ---photos path---
-    tank_path = os.path.join("photos", "tank_try3.png")
+    tank_path = os.path.join("photos", "tank_try4.png")
     players_img = pygame.image.load(tank_path).convert_alpha()
 
 
