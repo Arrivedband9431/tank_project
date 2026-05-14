@@ -1,3 +1,4 @@
+import os
 import pygame
 import sys
 import math
@@ -38,10 +39,13 @@ bullets = []
 amount_of_bullets_shot = 0
 bullet_speed = players_speed * 1.25
 
-players_img = pygame.image.load("tank_try3.png").convert_alpha()
+tank_path = os.path.join("photos", "tank_try3.png")
+player_sprite_path_img = os.path.join("photos", "player_sprite.png")
+
+players_img = pygame.image.load(tank_path).convert_alpha()
 player = players_img.get_rect()
 
-player_shot = pygame.image.load("player_sprite.png").convert_alpha()
+player_shot = pygame.image.load(player_sprite_path_img).convert_alpha()
 gh = player_shot.get_rect()
 
 gh.center = (width // 2, height // 2)

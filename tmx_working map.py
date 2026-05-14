@@ -14,7 +14,7 @@ PLAYER_SPEED = 4
 
 class Camera:
     def __init__(self, width, height):
-        self.camera = pygame.Rect(0, 0, width, height)
+        self.camera = pygame.Rect(0,0, width, height)
 
     def apply(self, x, y):
         return x + self.camera.x, y + self.camera.y
