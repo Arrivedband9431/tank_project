@@ -118,7 +118,7 @@ def main():
             dy = -PLAYER_SPEED
         if keys[pygame.K_s]:
             dy = PLAYER_SPEED
-        if keys[pygame.K_x]:
+        if keys[pygame.K_q]:
             pygame.quit()
 
         move_player(player, dx, dy, collision_rects)
