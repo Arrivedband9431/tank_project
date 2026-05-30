@@ -24,7 +24,7 @@ green = (0, 220, 80)
 yellow = (255, 230, 0)
 red = (255, 60, 60)
 
-alive = True# is player 2 alive
+lives_left = 3
 
 def draw_map(surface, tmx_data):
     for layer in tmx_data.visible_layers:
@@ -68,7 +68,7 @@ def move_player(player, dx, dy, collision_rects):
 
 
 def update_and_draw_bullets(surface, map_width, map_height, collision_rects,player2):
-    global alive
+    global lives_left
     for bullet_data in bullets[:]:
         bullet_rect = bullet_data[0]
         bullet_angle = bullet_data[1]
@@ -88,7 +88,7 @@ def update_and_draw_bullets(surface, map_width, map_height, collision_rects,play
 
         if bullet_rect.colliderect(player2):
             # add here other tank lives -1
-            alive = False
+            lives_left = lives_left - 1
             bullets.remove(bullet_data)
             continue
 
@@ -161,20 +161,31 @@ def main():
                 print(bullets)
                 last_shot_time = current_time
 
-        # Logic updates
+        # logic updates
         move_player(player, dx, dy, collision_rects)
 
-        # Rendering
+        # moving the second player
+        move_player(player2, -dx, -dy, collision_rects)
+        # -------------------------
+
+
+        # drawing the map
         screen.fill((30, 30, 30))
         draw_map(screen, tmx_data)
 
         # pass collision list down to handle bullet wall deletion
         update_and_draw_bullets(screen, map_width, map_height, collision_rects,player2)
 
-        # Draw player directly to screen
+        # draw player directly to screen
         screen.blit(players_img, player) # drawing player 1
-        if alive:
+        if lives_left > 0:
             screen.blit(players_img2, player2) #drawing player 2
+        else:
+            print("----------------------")
+            print("player1 won the game")
+            print("----------------------")
+            pygame.quit()
+
         pygame.display.flip()
         clock.tick(60)
 
